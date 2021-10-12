@@ -9,6 +9,8 @@ npm install aht20-sensor
 
 ## Example
 ```js
+const aht20 = require('aht20-sensor');
+
 aht20.open().then(async (sensor) => {
     const temp = await sensor.temperature();
     const hum = await sensor.humidity();
