@@ -1,0 +1,31 @@
+{
+  "name": "aht20-sensor",
+  "version": "0.1.0",
+  "description": "A Node.js I2C module for the Adafruit AHT20 Humidity/Temperature Sensor.",
+  "main": "AHT20.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomome/aht20-sensor.git"
+  },
+  "keywords": [
+    "AHT20",
+    "Humidity",
+    "Temperature",
+    "Sensor",
+    "Adafruit",
+    "Raspberry",
+    "Pi"
+  ],
+  "author": "Thomas Guthruf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thomome/aht20-sensor/issues"
+  },
+  "homepage": "https://github.com/thomome/aht20-sensor#readme",
+  "dependencies": {
+    "i2c-bus": "^5.2.2"
+  }
+}
