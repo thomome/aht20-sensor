@@ -21,18 +21,18 @@ export default class AHT20 {
 		this.bus = bus;
 	}
 
-	static async open(busNumber: number = 1): Promise<any> {
+	static async open(busNumber: number = 1): Promise<AHT20> {
 		try {
 			const bus: i2c.PromisifiedBus = await i2c.openPromisified(busNumber);
 			const sensor: AHT20 = new AHT20(bus);
 			await sensor.init();
 			return sensor;
 		} catch (err: any) {
-			return err;
+			throw err;
 		}
 	}
 
-	async init(): Promise<any> {
+	async init(): Promise<boolean> {
 		try {
 			await sleep(20);
 			await this.reset();
@@ -42,32 +42,32 @@ export default class AHT20 {
 			}
 			return true;
 		} catch(err: any) {
-			return err;
+			throw err;
 		}
 	}
 
-	async getStatus(): Promise<any> {
+	async getStatus(): Promise<number> {
 		try {
 			const buf: Buffer = Buffer.alloc(1);
 			await this.bus.i2cRead(AHT20_I2CADDR, buf.length, buf);
 			return buf.readInt8();
 		} catch (err: any) {
-			return err;
+			throw err;
 		}
 	}
 
-	async reset(): Promise<any> {
+	async reset(): Promise<boolean> {
 		try {
 			const buf: Buffer = Buffer.from(AHT20_CMD_SOFTRESET);
 			await this.bus.i2cWrite(AHT20_I2CADDR, buf.length, buf);
 			await sleep(20);
 			return true;
 		} catch (err: any) {
-			return err;
+			throw err;
 		}
 	}
 
-	async calibrate(): Promise<any> {
+	async calibrate(): Promise<boolean> {
 		try {
 			const buf: Buffer = Buffer.from(AHT20_CMD_CALIBRATE);
 			await this.bus.i2cWrite(AHT20_I2CADDR, buf.length, buf);
@@ -80,11 +80,11 @@ export default class AHT20 {
 			}
 			return true;
 		} catch (err: any) {
-			return err;
+			throw err;
 		}
 	}
 
-	async readData(): Promise<any> {
+	async readData(): Promise<{[key: string]: number}> {
 		try {
 			const buf: Buffer = Buffer.from(AHT20_CMD_MEASURE);
 			await this.bus.i2cWrite(AHT20_I2CADDR, buf.length, buf);
@@ -104,25 +104,25 @@ export default class AHT20 {
 				temperature
 			};
 		} catch (err: any) {
-			return err;
+			throw err;
 		}
 	}
 
-	async temperature(): Promise<any> {
+	async temperature(): Promise<number> {
 		try {
 			const { temperature }: {[key: string]: number} = await this.readData();
 			return temperature;
 		} catch (err: any) {
-			return err;
+			throw err;
 		}
 	}
 
-	async humidity(): Promise<any> {
+	async humidity(): Promise<number> {
 		try {
 			const { humidity }: {[key: string]: number} = await this.readData();
 			return humidity;
 		} catch (err: any) {
-			return err;
+			throw err;
 		}
 	}
 }
