@@ -4,6 +4,8 @@
   "description": "A Node.js I2C module for the Adafruit AHT20 Humidity/Temperature Sensor.",
   "main": "AHT20.js",
   "scripts": {
+    "build": "tsc",
+    "release": "npx release-it",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,5 +33,10 @@
   "devDependencies": {
     "@types/i2c-bus": "^5.1.0",
     "typescript": "^5.2.2"
+  },
+  "release-it": {
+    "github": {
+      "release": true
+    }
   }
 }
