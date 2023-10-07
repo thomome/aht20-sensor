@@ -27,5 +27,9 @@
   "homepage": "https://github.com/thomome/aht20-sensor#readme",
   "dependencies": {
     "i2c-bus": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/i2c-bus": "^5.1.0",
+    "typescript": "^5.2.2"
   }
 }
