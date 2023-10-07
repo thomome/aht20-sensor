@@ -1,6 +1,6 @@
 {
   "name": "aht20-sensor",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "A Node.js I2C module for the Adafruit AHT20 Humidity/Temperature Sensor.",
   "main": "AHT20.js",
   "scripts": {
