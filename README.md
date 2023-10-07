@@ -9,19 +9,9 @@ npm install aht20-sensor
 
 ## Example
 ```js
-const aht20 = require('aht20-sensor');
+const { default: AHT20 } = require('../AHT20.js');
 
-aht20.open().then(async (sensor) => {
-    const temp = await sensor.temperature();
-    const hum = await sensor.humidity();
-    console.log(temp, hum);
-});
-```
-
-```ts
-import aht20 from 'aht20-sensor';
-
-aht20.open().then(async (sensor) => {
+AHT20.open().then(async (sensor) => {
     const temp = await sensor.temperature();
     const hum = await sensor.humidity();
     console.log(temp, hum);
@@ -29,5 +19,4 @@ aht20.open().then(async (sensor) => {
 ```
 
 ## Wiring
-
 Wiring can be found here: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-aht20.pdf
