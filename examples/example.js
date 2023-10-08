@@ -7,7 +7,7 @@ AHT20.open().then(async (sensor) => {
         console.log(temp, hum);
     }
     catch(err) {
-        console.log("Failed to get temperature or humidity data.");
+        console.error("Failed to get temperature or humidity data.");
     }
 }).catch((err) => {
     console.error("Failed to open bus.");
