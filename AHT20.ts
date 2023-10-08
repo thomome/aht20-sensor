@@ -87,7 +87,7 @@ export default class AHT20 {
      * @returns `true` if successfully reset the sensor.
      * @throws An error that occurred while resetting the sensor.
      */
-	private async reset(): Promise<boolean> {
+	public async reset(): Promise<boolean> {
 		try {
 			const buf: Buffer = Buffer.from(AHT20_CMD_SOFTRESET);
 			await this.bus.i2cWrite(AHT20_I2CADDR, buf.length, buf);
@@ -103,7 +103,7 @@ export default class AHT20 {
      * @returns `true` if successfully calibrated the sensor.
      * @throws An error that occurred while calibrating the sensor.
      */
-	private async calibrate(): Promise<boolean> {
+	public async calibrate(): Promise<boolean> {
 		try {
 			const buf: Buffer = Buffer.from(AHT20_CMD_CALIBRATE);
 			await this.bus.i2cWrite(AHT20_I2CADDR, buf.length, buf);
