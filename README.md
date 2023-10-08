@@ -9,7 +9,7 @@ npm install aht20-sensor
 
 ## Example
 ```js
-const { default: AHT20 } = require('../AHT20.js');
+const { default: AHT20 } = require('aht20-sensor');
 
 AHT20.open().then(async (sensor) => {
     try {
