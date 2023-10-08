@@ -23,10 +23,23 @@ const AHT20_CMD_CALIBRATE = [0xE1, 0x08, 0x00];
 const AHT20_CMD_MEASURE = [0xAC, 0x33, 0x00];
 const AHT20_STATUS_BUSY = 0x80;
 const AHT20_STATUS_CALIBRATED = 0x08;
+/**
+ * AHT20 sensor class with data read functions.
+ */
 class AHT20 {
+    /**
+     * Constructor
+     * @param bus bus instance
+     */
     constructor(bus) {
         this.bus = bus;
     }
+    /**
+     * Opens i2c bus and connect to the AHT20 sensor.
+     * @param busNumber Target bus number to open. Default is 1.
+     * @returns AHT20 instance with opened bus instance. You can read information with this instance.
+     * @throws An error that occurred while opening i2c bus.
+     */
     static open(busNumber = 1) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -40,6 +53,11 @@ class AHT20 {
             }
         });
     }
+    /**
+     * Initializes AHT20 sensor.
+     * @returns `true` if successfully initialized the sensor.
+     * @throws An error that occurred while initializing the sensor.
+     */
     init() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -55,6 +73,11 @@ class AHT20 {
             }
         });
     }
+    /**
+     * Gets AHT20 sensor status.
+     * @returns Sensor status
+     * @throws An error that occurred while getting sensor status.
+     */
     getStatus() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -67,6 +90,11 @@ class AHT20 {
             }
         });
     }
+    /**
+     * Resets AHT20 sensor.
+     * @returns `true` if successfully reset the sensor.
+     * @throws An error that occurred while resetting the sensor.
+     */
     reset() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -80,6 +108,11 @@ class AHT20 {
             }
         });
     }
+    /**
+     * Calibrates AHT20 sensor.
+     * @returns `true` if successfully calibrated the sensor.
+     * @throws An error that occurred while calibrating the sensor.
+     */
     calibrate() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -98,6 +131,11 @@ class AHT20 {
             }
         });
     }
+    /**
+     * Reads information from AHT20 sensor.
+     * @returns Information dictionary with temperature and humidity data.
+     * @throws An error that occurred while Reading the information.
+     */
     readData() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -120,6 +158,11 @@ class AHT20 {
             }
         });
     }
+    /**
+     * Gets temperature data from AHT20 sensor.
+     * @returns Temperature gotten from the sensor in Celsius.
+     * @throws An error that occurred while getting temperature data.
+     */
     temperature() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -131,6 +174,11 @@ class AHT20 {
             }
         });
     }
+    /**
+     * Gets humidity data from AHT20 sensor.
+     * @returns Humidity gotten from the sensor in RH%.
+     * @throws An error that occurred while getting humidity data.
+     */
     humidity() {
         return __awaiter(this, void 0, void 0, function* () {
             try {

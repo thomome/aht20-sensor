@@ -36,13 +36,13 @@ export default class AHT20 {
      * @returns `true` if successfully reset the sensor.
      * @throws An error that occurred while resetting the sensor.
      */
-    private reset;
+    reset(): Promise<boolean>;
     /**
      * Calibrates AHT20 sensor.
      * @returns `true` if successfully calibrated the sensor.
      * @throws An error that occurred while calibrating the sensor.
      */
-    private calibrate;
+    calibrate(): Promise<boolean>;
     /**
      * Reads information from AHT20 sensor.
      * @returns Information dictionary with temperature and humidity data.
