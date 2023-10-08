@@ -37,7 +37,7 @@ export default class AHT20 {
      * @returns AHT20 instance with opened bus instance. You can read information with this instance.
      * @throws An error that occurred while opening i2c bus.
      */
-	static async open(busNumber: number = 1): Promise<AHT20> {
+	public static async open(busNumber: number = 1): Promise<AHT20> {
 		try {
 			const bus: i2c.PromisifiedBus = await i2c.openPromisified(busNumber);
 			const sensor: AHT20 = new AHT20(bus);
@@ -53,7 +53,7 @@ export default class AHT20 {
      * @returns `true` if successfully initialized the sensor.
      * @throws An error that occurred while initializing the sensor.
      */
-	async init(): Promise<boolean> {
+	private async init(): Promise<boolean> {
 		try {
 			await sleep(20);
 			await this.reset();
@@ -72,7 +72,7 @@ export default class AHT20 {
      * @returns Sensor status
      * @throws An error that occurred while getting sensor status.
      */
-	async getStatus(): Promise<number> {
+	private async getStatus(): Promise<number> {
 		try {
 			const buf: Buffer = Buffer.alloc(1);
 			await this.bus.i2cRead(AHT20_I2CADDR, buf.length, buf);
@@ -87,7 +87,7 @@ export default class AHT20 {
      * @returns `true` if successfully reset the sensor.
      * @throws An error that occurred while resetting the sensor.
      */
-	async reset(): Promise<boolean> {
+	private async reset(): Promise<boolean> {
 		try {
 			const buf: Buffer = Buffer.from(AHT20_CMD_SOFTRESET);
 			await this.bus.i2cWrite(AHT20_I2CADDR, buf.length, buf);
@@ -103,7 +103,7 @@ export default class AHT20 {
      * @returns `true` if successfully calibrated the sensor.
      * @throws An error that occurred while calibrating the sensor.
      */
-	async calibrate(): Promise<boolean> {
+	private async calibrate(): Promise<boolean> {
 		try {
 			const buf: Buffer = Buffer.from(AHT20_CMD_CALIBRATE);
 			await this.bus.i2cWrite(AHT20_I2CADDR, buf.length, buf);
@@ -125,7 +125,7 @@ export default class AHT20 {
      * @returns Information dictionary with temperature and humidity data.
      * @throws An error that occurred while Reading the information.
      */
-	async readData(): Promise<{[key: string]: number}> {
+	private async readData(): Promise<{[key: string]: number}> {
 		try {
 			const buf: Buffer = Buffer.from(AHT20_CMD_MEASURE);
 			await this.bus.i2cWrite(AHT20_I2CADDR, buf.length, buf);
@@ -154,7 +154,7 @@ export default class AHT20 {
      * @returns Temperature gotten from the sensor in Celsius.
      * @throws An error that occurred while getting temperature data.
      */
-	async temperature(): Promise<number> {
+	public async temperature(): Promise<number> {
 		try {
 			const { temperature }: {[key: string]: number} = await this.readData();
 			return temperature;
@@ -168,7 +168,7 @@ export default class AHT20 {
      * @returns Humidity gotten from the sensor in RH%.
      * @throws An error that occurred while getting humidity data.
      */
-	async humidity(): Promise<number> {
+	public async humidity(): Promise<number> {
 		try {
 			const { humidity }: {[key: string]: number} = await this.readData();
 			return humidity;

@@ -24,33 +24,31 @@ export default class AHT20 {
      * @returns `true` if successfully initialized the sensor.
      * @throws An error that occurred while initializing the sensor.
      */
-    init(): Promise<boolean>;
+    private init;
     /**
      * Gets AHT20 sensor status.
      * @returns Sensor status
      * @throws An error that occurred while getting sensor status.
      */
-    getStatus(): Promise<number>;
+    private getStatus;
     /**
      * Resets AHT20 sensor.
      * @returns `true` if successfully reset the sensor.
      * @throws An error that occurred while resetting the sensor.
      */
-    reset(): Promise<boolean>;
+    private reset;
     /**
      * Calibrates AHT20 sensor.
      * @returns `true` if successfully calibrated the sensor.
      * @throws An error that occurred while calibrating the sensor.
      */
-    calibrate(): Promise<boolean>;
+    private calibrate;
     /**
      * Reads information from AHT20 sensor.
      * @returns Information dictionary with temperature and humidity data.
      * @throws An error that occurred while Reading the information.
      */
-    readData(): Promise<{
-        [key: string]: number;
-    }>;
+    private readData;
     /**
      * Gets temperature data from AHT20 sensor.
      * @returns Temperature gotten from the sensor in Celsius.
